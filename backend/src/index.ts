@@ -4,6 +4,7 @@ import { Hono } from 'hono';
 import { sign } from 'hono/jwt';
 import {blogRouter} from './routes/blogRouter';
 import {userRouter} from './routes/userRouter';
+import { cors } from 'hono/cors'
 
 // Create the main Hono app
 const app = new Hono<{
@@ -14,7 +15,7 @@ const app = new Hono<{
 }>();
 
 // Define the signup endpoint
-
+app.use('/*', cors());
 app.route('/api/v1/user', userRouter);
 app.route('/api/v1/blog', blogRouter);
 
